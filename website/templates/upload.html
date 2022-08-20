@@ -8,6 +8,8 @@
 
 
 <script>
+  resData = ""
+
 const handleImageUpload = event => {
   const files = event.target.files
   const formData = new FormData()
@@ -18,8 +20,8 @@ const handleImageUpload = event => {
     body: formData
   })
   .then(response => {
-   data = JSON.stringify(response.json()) // data of api call
-
+   resData = response.text // data of api call
+// do stuff with variable. 
   }) 
   .then(data => {
     console.log(data.path) // image path
