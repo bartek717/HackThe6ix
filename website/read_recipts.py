@@ -2,7 +2,7 @@ from PIL import Image
 import pytesseract
 
 def read_receipt(img):
-    ingredients = pytesseract.image_to_string(img) # string of entire picture
+    ingredients = pytesseract.image_to_string(Image.open(img)) # string of entire picture
     stripped = ingredients[ 0 : ingredients.lower().index("total")]     # delete  everything after total
 
     itemize = stripped.split("\n")
