@@ -6,6 +6,7 @@ def read_receipt(img):
     stripped = ingredients[ 0 : ingredients.lower().index("total")]     # delete  everything after total
 
     itemize = stripped.split("\n")
+
     total = 0
 
     def has_numbers(inputString):
