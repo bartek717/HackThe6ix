@@ -1,7 +1,23 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial"
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="baseStyles.css">
+        <title>{% block title %}Home{% endblock %}</title>
     </head>
-</html> -->
+    <body>
+        <nav class="navbar">
+            <button class ="navbar-toggle" type ="button" data-toggle="collapse" data-target="navbar"><span class="navbar-toggler-icon"></span></button>
+            <div class ="collapse navbar-collapse" id = "navbar">
+                <div class = "navbar-nav">
+                    <a href="nav-item nav-link" id="login" href='/login'>Login</a>
+                    <a href="nav-item nav-link" id="signUp" href='/sign-up'>Sign Up</a>
+                    <a href="nav-item nav-link" id="logout" href='/logout'>Logout</a>
+                    <a href="nav-item nav-link" id="home" href='/'>Home</a>
+                </div>
+            </div>
+        </nav>
+
+    </body>
+</html>
