@@ -14,6 +14,3 @@ for item in new:
 for item in items:
     print(item)   
     
-   
-   
-    
