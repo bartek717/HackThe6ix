@@ -33,11 +33,4 @@ def read_receipt(img):
 
 total, subtotal, taxes, groupedItemData = read_receipt("sample.jpg")  
 
-print(f"Total value of goods: {subtotal}")
-print(f"Total value of goods with taxes: {total}")
-print(f"Taxes: {taxes}")
-print("Items:")
-
-for item in groupedItemData:
-    print(item)
 
