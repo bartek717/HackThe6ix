@@ -28,13 +28,19 @@ def login():
         else:
             error = "User does not exist"
             flash(error)
-    return render_template("login.html")
+    return render_template("auth/login.html")
+
 
 @auth.route('/logout')
 @login_required
 def logout():
-    logout_user()
-    return redirect(url_for('auth.login'))
+    """
+    If the user is logged in, log them out and redirect them to the home page
+    :return: a redirect to the home page.
+    """
+    if current_user.is_authenticated:
+        logout_user()
+    return redirect(url_for('views.home'))
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
@@ -48,7 +54,6 @@ def sign_up():
             flash(error)
             return render_template("sign_up.html")
 
-
         user = User.query.filter_by(email=email).first()
         if user:
             error = "Email already registered."
@@ -59,6 +64,4 @@ def sign_up():
             db.session.commit()
             return redirect(url_for('views.home'))
         
-        
-    return render_template("sign_up.html", user=current_user)
-
+    return render_template("auth/sign_up.html", user=current_user)
