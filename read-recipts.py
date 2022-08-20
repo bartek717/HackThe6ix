@@ -7,7 +7,6 @@ def getReciptData(imageName):
 
     itemize = stripped.split("\n")
 
-    items = []
     total = 0
 
     def has_numbers(inputString):
