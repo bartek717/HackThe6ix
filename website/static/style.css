@@ -169,3 +169,21 @@ a:hover {
     background-color: white;
     opacity: 0.5;
 }
+
+.background-graphics {
+    position: fixed;
+    top: 60%;
+}
+
+.background-graphic-right {
+    position: fixed;
+    right: 25%;
+    height: 15rem;
+}
+
+.background-graphic-left {
+    position: fixed;
+    left: 25%;
+    height: 15rem;
+    transform: scaleX(-1);
+}
