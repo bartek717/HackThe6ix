@@ -29,11 +29,15 @@ def read_receipt(img):
     total = round(subtotal*1.13,2)
     taxes = round(total - subtotal,2)
 
+    return total, subtotal, taxes, groupedItemData
 
-    print(f"Total value of goods: {subtotal}")
-    print(f"Total value of goods with taxes: {total}")
-    print(f"Taxes: {taxes}")
-    print("Items:")
+total, subtotal, taxes, groupedItemData = read_receipt("sample.jpg")  
 
-    for item in groupedItemData:
-        print(item)
+print(f"Total value of goods: {subtotal}")
+print(f"Total value of goods with taxes: {total}")
+print(f"Taxes: {taxes}")
+print("Items:")
+
+for item in groupedItemData:
+    print(item)
+
