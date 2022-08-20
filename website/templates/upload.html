@@ -17,7 +17,10 @@ const handleImageUpload = event => {
     method: 'POST',
     body: formData
   })
-  .then(response => response.json()) // this would contain the reuslt of get recipt data
+  .then(response => {
+   data = JSON.stringify(response.json()) // data of api call
+
+  }) 
   .then(data => {
     console.log(data.path) // image path
   })
