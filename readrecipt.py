@@ -2,24 +2,37 @@ from PIL import Image
 import pytesseract
 
 ingredients = pytesseract.image_to_string(Image.open('sample.jpg')) # string of entire picture
+stripped = ingredients[ 0 : ingredients.lower().index("total")]     # delete  everything after total
 
-new = ingredients.split("\n")
+itemize = stripped.split("\n")
 
 items = []
 total = 0
 
-for item in new:
-    if "total" in item.lower():
-        break
+def has_numbers(inputString):
+    return any(char.isdigit() for char in inputString)
 
-    if "." in item and "/" not in item:
-        items.append(item)
-        price = float(item.split(" ")[-1])
-        total += price
+groupedItemData = []
+total = 0
+
+for item in itemize:
+    if "." in item and "%" not in item:
+
+        groupedItemData.append(item)
+
+        itemParts = item.split()
+        for item in itemParts:
+            if has_numbers(item) and "." in item and "$" in item:
+                total += float(item[1:])
+            
+subtotal = round(total,2)
+total = round(subtotal*1.13,2)
+taxes = round(total - subtotal,2)
+
+print(f"Total value of goods: {subtotal}")
+print(f"Total value of goods with taxes: {total}")
+print(f"Taxes: {taxes}")
 
 print("Items:")
-for item in items:
+for item in groupedItemData:
     print(item)
-
-print(f"Total: {total}")
-print(f"Total w/ Ontario Tax: {total*1.13}")
