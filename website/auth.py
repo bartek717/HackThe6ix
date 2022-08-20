@@ -27,7 +27,7 @@ def login():
         else:
             print("user does not exist")
 
-    return render_template("login.html", user=current_user)
+    return render_template("login.html")
 
 @auth.route('/logout')
 @login_required
