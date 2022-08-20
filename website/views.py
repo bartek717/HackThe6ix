@@ -1,9 +1,8 @@
 from flask import Blueprint, render_template,request
 from flask_login import  login_required, current_user
-from  website.read_recipts import read_receipt
+from  website.read_receipts import read_receipt
 import io
 from PIL import Image
-
 
 views = Blueprint('views', __name__)
 
@@ -16,9 +15,9 @@ def home():
 @login_required
 def upload():
     if request.method == 'POST':
-        photo = request.files['file']
+        img = request.files['file']
         in_memory_file = io.BytesIO()
-        photo.save(in_memory_file)
+        img.save(in_memory_file)
         img = Image.open(in_memory_file)
         read_receipt(img)
 
