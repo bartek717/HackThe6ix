@@ -1,5 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,request
 from flask_login import  login_required, current_user
+from  website.read_recipts import read_receipt
+import io
+from PIL import Image
+
 
 views = Blueprint('views', __name__)
 
@@ -8,9 +12,16 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html", user=current_user)
 
-@views.route('/upload')
+@views.route('/upload',methods=['GET', 'POST'])
 @login_required
 def upload():
+    if request.method == 'POST':
+        photo = request.files['file']
+        in_memory_file = io.BytesIO()
+        photo.save(in_memory_file)
+        img = Image.open(in_memory_file)
+        read_receipt(img)
+
     return render_template("upload.html", user=current_user)
 
 @views.route('/overview')
@@ -23,4 +34,3 @@ def overview():
 def view():
     return render_template("view.html", user=current_user)
     
-
