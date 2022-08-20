@@ -1,3 +1,13 @@
-body {
-    color:red
+.textblock {
+    display: flex;
+    flex-direction: column;
+    border-style: dotted;
+    margin: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.statement {
+    text-shadow : horizontal-shadow vertical-shadow blur color;
+    width:350px;
 }
