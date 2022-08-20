@@ -4,18 +4,30 @@
 <h1>Upload Receipts</h1>
 
 <form method="POST"  enctype="multipart/form-data">
-        <input type="file" accept="image/*"  name="file">
-        <button onclick="doupload()" name="submit">Upload File</button>
+        <input type="file" accept="image/*" name="file" id="fileUpload">
 
 
 <script>
-function doupload() {
-    let data = document.getElementById("file").files[0];
-    let entry = document.getElementById("file").files[0];
-    console.log('doupload',entry,data)
-    fetch('"apihere"' + encodeURIComponent(entry.name), {method:'PUT',body:data});
-    alert('your file has been uploaded');
-    location.reload();
-};
+const handleImageUpload = event => {
+  const files = event.target.files
+  const formData = new FormData()
+  formData.append('myFile', files[0])
+
+  fetch('127.0/save', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json()) // this would contain the reuslt of get recipt data
+  .then(data => {
+    console.log(data.path) // image path
+  })
+  .catch(error => {
+    console.error(error)
+  })
+}
+
+document.querySelector('#fileUpload').addEventListener('change', event => {
+  handleImageUpload(event)
+})
 </script>
 {% endblock %}
