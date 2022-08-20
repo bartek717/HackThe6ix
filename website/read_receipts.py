@@ -2,7 +2,7 @@ from PIL import Image
 import pytesseract
 
 def read_receipt(img):
-    ingredients = pytesseract.image_to_string(Image.open(img)) # string of entire picture
+    ingredients = pytesseract.image_to_string(img) # string of entire picture
     stripped = ingredients[ 0 : ingredients.lower().index("total")]     # delete  everything after total
 
     itemize = stripped.split("\n")
@@ -28,9 +28,15 @@ def read_receipt(img):
     subtotal = round(total,2)
     total = round(subtotal*1.13,2)
     taxes = round(total - subtotal,2)
+    
+    print(f"Total value of goods: {subtotal}")
+    print(f"Total value of goods with taxes: {total}")
+    print(f"Taxes: {taxes}")
+    print("Items:")
 
+    for item in groupedItemData:
+        print(item)
     return total, subtotal, taxes, groupedItemData
 
-total, subtotal, taxes, groupedItemData = read_receipt("sample.jpg")  
 
 
