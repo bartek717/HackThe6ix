@@ -1,7 +1,7 @@
 from curses import flash
 import curses
 from unicodedata import category
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for,flash
 from website import views
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -23,10 +23,11 @@ def login():
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
             else:
-                print("incorrect user")
+                error = "Unable to authenticate"
+                flash(error)
         else:
-            print("user does not exist")
-
+            error = "User does not exist"
+            flash(error)
     return render_template("login.html")
 
 @auth.route('/logout')
@@ -42,10 +43,16 @@ def sign_up():
         first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        if password1!=password2:
+            error = "Please confirm your password."
+            flash(error)
+            return render_template("sign_up.html")
+
 
         user = User.query.filter_by(email=email).first()
         if user:
-            print("email exists")
+            error = "Email already registered."
+            flash(error)
         else:
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"))
             db.session.add(new_user)
