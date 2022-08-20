@@ -1,13 +1,41 @@
 {%extends "base.html"%} 
 {% block title%}Home{% endblock %}
 {% block content %}
-<h1>Home</h1>
 
-<div class="selectOption">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles/style-home.css">
+</head>
+<body>
+        <h1>Home</h1>
+
+        <div class="selectOption">
+                
+                <a href="/view" id="View">View Previous</a>
+                <a href="/overview" id="Overview">Overview</a>
+        <div>
+                <h1>Snap a pic... track your money</h1>
         
-        <a href="/view" id="View">View Previous</a>
-        <a href="/overview" id="Overview">Overview</a>
-</div>
+                <p>It's <em>that</em> easy</p>
+        
+                <p>Track your recipts, allowing you to track your fiances, budgeting, and tax returns.</p>
+                
+                <ul>
+                <li>Easy Upload</li>
+                <li>Automatic GST/HST tracking</li>
+                <li>Comprehensive overview</li>
+                </ul>
+        </div>
+        
+        </div>
+</body>
+</html>
+
 
 
 {% endblock %}
