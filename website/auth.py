@@ -42,7 +42,7 @@ def logout():
         logout_user()
     return redirect(url_for('views.home'))
 
-@auth.route('/sign-up', methods=['GET', 'POST'])
+@auth.route('/signup', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -64,4 +64,4 @@ def sign_up():
             db.session.commit()
             return redirect(url_for('views.home'))
         
-    return render_template("auth/sign_up.html", user=current_user)
+    return render_template("auth/signup.html", user=current_user)

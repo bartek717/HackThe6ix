@@ -6,23 +6,22 @@
 <body>
   <header class="web-header">
           <div class="header-logo">
-                  <a href="home.html"><img class="header-logo-image" src="../static/images/qmind-concept1.png"></a>
+                  <a href="/"><img class="header-logo-image" src="../static/images/qmind-concept1.png"></a>
           </div>
           <nav>
                   <ul>
                           <a href="/" class="button-1">About</a>
-                          <a href="signup.html" class="button-1">Sign Up</a>
+                          <a href="/signup" class="button-1">Sign Up</a>
                   </ul>
           </nav>
   </header>
   <div class="main-body-content">
   <div class="upload-form">
 <h1>Upload Receipts</h1>
-
-<form action="../database.db" method="POST"  enctype="multipart/form-data">
-<input type="file" accept="image/*" name="file" id="fileUpload">
-
+<form method="POST"  enctype="multipart/form-data">
+        <input type="file" accept="image/*" name="file" id="fileUpload">
 <script>
+  
   resData = ""
 
 const handleImageUpload = event => {
@@ -52,7 +51,7 @@ document.querySelector('#fileUpload').addEventListener('change', event => {
 })
 </script>
 <div class="form-group">
-  <button href="home.html" type="submit" class="submit-button">Upload</button>
+  <button href="/" type="submit" class="submit-button">Upload</button>
 </div>
 </form>
 <div class="background-graphics">
