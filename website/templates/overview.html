@@ -53,7 +53,8 @@
         </div>
     </div>
     <script>
-        var json = [{ // THIS would be the response from the api
+        let taxes = 0
+        var json = [{ // THIS would be the response from the api, its a sample
             subtotal: 50,
             total: 55,
             taxes: 5,
@@ -63,11 +64,13 @@
         var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/'); //todays date
         
         var k = '<tbody>'
-        for(i = 0;i < json.length; i++){
+        for(i = 0; i < json.length; i++){
             k+= '<tr>';
             k+= '<td>' + utc + '</td>';
             k+= '<td>' + json[i].total + '</td>';
             k+= '<td>' + json[i].taxes + '</td>';
+            
+            taxes+=json[i].taxes
 
             let str = ""
             for (k = 0; k <json.items.length; k++) {
@@ -83,6 +86,7 @@
     k+='</tbody>';
     document.getElementById('tableData').innerHTML = k;
 
+    document.getElementById('totalTax').innerHTML = taxes;   
 
 
     </script>
