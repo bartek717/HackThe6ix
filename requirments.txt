@@ -1,6 +1,0 @@
-pip install python3
-pip install flask
-pip install flask-login
-pip install flask-sqlalchemy
-pip install windows-curses
-pip install PIL
