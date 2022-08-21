@@ -22,65 +22,24 @@
                     <a class="button-1" href="upload.html">Upload</a>
                 </div>
                 <p>Total: </p>
-                <p>Total GST/HST: </p>
+                <p id="totalTax">Total GST/HST: </p>
             </div>
             <div class="overview-table">
-                <table class="o-table">
-                    <tr>
-                        <th class="t-date green-text">Date</th>
-                        <th class="t-average green-text">Average</th>
-                        <th class="t-gst-hst green-text">GST/HST</th>
-                        <th class="t-file green-text">File</th>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                    <tr>
-                        <td>January 19 2022</td>
-                        <td>$87.93</td>
-                        <td>$10.12</td>
-                        <td>View File</td>
-                    </tr>
-                </table>
+              
+                        
+                <table class="o-table" >
+                    <thead>
+                        <tr>
+                         <th class="t-date green-text">Date</th>
+                            <th class="t-average green-text">Total</th>
+                            <th class="t-gst-hst green-text">GST/HST</th>
+                            <th class="t-file green-text">File</th>
+                        </tr>
+                    </thead>
+                        <tbody id="tableData"></tbody>
+                    </table>
+                    
+               
             </div>
             <div class="overview-footer">
                 <p>Budget Progress:</p>
@@ -93,4 +52,38 @@
             </div>
         </div>
     </div>
+    <script>
+        var json = [{ // THIS would be the response from the api
+            subtotal: 50,
+            total: 55,
+            taxes: 5,
+            items: ["Salmon 5.00", "Water 45.00"]
+        }]
+
+        var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/'); //todays date
+        
+        var k = '<tbody>'
+        for(i = 0;i < json.length; i++){
+            k+= '<tr>';
+            k+= '<td>' + utc + '</td>';
+            k+= '<td>' + json[i].total + '</td>';
+            k+= '<td>' + json[i].taxes + '</td>';
+
+            let str = ""
+            for (k = 0; k <json.items.length; k++) {
+                str+= json.items[k] + ", "
+            }
+
+            k+= '<td>' + str + '</td>';
+            k+= '<td href="LinkToPicHere">' + "View Recipt" + '</td>';
+
+
+            k+= '</tr>';
+        }
+    k+='</tbody>';
+    document.getElementById('tableData').innerHTML = k;
+
+
+
+    </script>
 </body>
