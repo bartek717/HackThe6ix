@@ -37,6 +37,7 @@ def upload():
         new_receipt =Receipt(data=data,date=datetime.datetime.now(),user_id=user_id)
         db.session.add(new_receipt)
         db.session.commit()
+        return render_template("overview.html", user=current_user)
 
     return render_template("upload.html", user=current_user)
 
@@ -59,4 +60,7 @@ def json_api():
 @login_required
 def view():
     return render_template("view.html", user=current_user)
+
+
+
     

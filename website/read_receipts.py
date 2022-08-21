@@ -1,6 +1,8 @@
 from PIL import Image
 import pytesseract
 
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
 def read_receipt(img):
     ingredients = pytesseract.image_to_string(img) # string of entire picture
     stripped = ingredients[ 0 : ingredients.lower().index("total")]     # delete  everything after total

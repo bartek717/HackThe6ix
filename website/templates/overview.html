@@ -9,12 +9,16 @@
 <body>
     <header class="web-header">
         <div class="header-logo">
-            <a href="/"><img class="header-logo-image" src="../static/images/qmind-concept1.png"></a>
+            <a href="/"><img class="header-logo-image" src="../static/images/snap2.png"></a>
         </div>
         <nav>
             <ul>
                 <a href="/" class="button-1">About</a>
+                {% if user.is_authenticated %}
+                <a href="/logout" class="button-1">Sign Out</a>
+                {% else %}
                 <a href="/signup" class="button-1">Sign Up</a>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -36,7 +40,7 @@
                             <th class="t-date green-text">Date</th>
                             <th class="t-average green-text">Total</th>
                             <th class="t-gst-hst green-text">GST/HST</th>
-                            <th class="t-file green-text">Subtotal</th>
+                            <th class="t-file green-text"><Details></Details></th>
                         </tr>
                     </thead>
                     <tbody id="tableData"></tbody>
@@ -49,7 +53,7 @@
                 <div class="p-bar-total">
                     <p class="p-bar-total-number"> $672 </p>
                     <div class="p-bar-current">
-                        <p class="p-bar-current-number">$257</p>
+                        <p class="p-bar-current-number">$237</p>
                     </div>
                 </div>
             </div>
@@ -57,6 +61,7 @@
     </div>
     <script>
         let taxes = 0
+        let total = 0
 
 
         fetch('/get').then(response => response.json())
@@ -72,6 +77,7 @@
                     k += '<td>' + json[i].taxes + '</td>';
 
                     taxes += json[i].taxes
+                    total += json[i].total
 
                     let str = ""
                     for (l = 0; l < json[i].items.length; l++) {
@@ -87,7 +93,7 @@
                 k += '</tbody>';
                 document.getElementById('tableData').innerHTML = k;
 
-                document.getElementById('totalTax').innerHTML = taxes;
+                document.getElementById('totalTax').innerHTML = total;
 
             })
 

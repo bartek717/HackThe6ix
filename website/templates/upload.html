@@ -6,12 +6,16 @@
 <body>
   <header class="web-header">
           <div class="header-logo">
-                  <a href="/"><img class="header-logo-image" src="../static/images/qmind-concept1.png"></a>
+                  <a href="/"><img class="header-logo-image" src="../static/images/snap2.png"></a>
           </div>
           <nav>
                   <ul>
-                          <a href="/" class="button-1">About</a>
-                          <a href="/signup" class="button-1">Sign Up</a>
+                        <a href="/" class="button-1">About</a>
+                        {% if user.is_authenticated %}
+                                <a href="/logout" class="button-1">Sign Out</a>
+                        {% else %}
+                                <a href="/signup" class="button-1">Sign Up</a>
+                        {% endif %}
                   </ul>
           </nav>
   </header>
@@ -21,7 +25,7 @@
 <form method="POST"  enctype="multipart/form-data">
         <input type="file" accept="image/*" name="file" id="fileUpload">
 <div class="form-group">
-  <button href="/" type="submit" class="submit-button">Upload</button>
+  <button href="/overview" type="submit" class="submit-button">Upload</button>
 </div>
 </form>
 <div class="background-graphics">
