@@ -1,9 +1,96 @@
-{%extends "base.html"%} 
-{% block title%}Home{% endblock %}
-{% block content %}
-<h1>Overview</h1>
-
-<div class="selectOption">
-    <a href="upload.html" id="Upload">Upload Receipt</a>
-</div>
-{% endblock %}
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+    <title>Hack The 6ix Project</title>
+</head>
+<body>
+    <header class="web-header">
+            <div class="header-logo">
+                    <a href="home.html"><img class="header-logo-image" src="../static/images/qmind-concept1.png"></a>
+            </div>
+            <nav>
+                    <ul>
+                            <a href="/" class="button-1">About</a>
+                            <a href="signup.html" class="button-1">Sign Up</a>
+                    </ul>
+            </nav>
+    </header>
+    <div class="main-body-content">
+        <div class="overview-dashboard">
+            <div class="overview-header">
+                <div class="options-overview">
+                    <a class="button-1" href="upload.html">Upload</a>
+                </div>
+                <p>Total: </p>
+                <p>Total GST/HST: </p>
+            </div>
+            <div class="overview-table">
+                <table class="o-table">
+                    <tr>
+                        <th class="t-date green-text">Date</th>
+                        <th class="t-average green-text">Average</th>
+                        <th class="t-gst-hst green-text">GST/HST</th>
+                        <th class="t-file green-text">File</th>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                    <tr>
+                        <td>January 19 2022</td>
+                        <td>$87.93</td>
+                        <td>$10.12</td>
+                        <td>View File</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="overview-footer">
+                <p>Budget Progress:</p>
+                <div class="p-bar-total">
+                    <p class="p-bar-total-number"> $672 </p>
+                    <div class="p-bar-current">
+                        <p class="p-bar-current-number">$257</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
