@@ -5,34 +5,6 @@
 
 <form method="POST"  enctype="multipart/form-data">
         <input type="file" accept="image/*" name="file" id="fileUpload">
-
-
-<script>
-  resData = ""
-
-const handleImageUpload = event => {
-  const files = event.target.files
-  const formData = new FormData()
-  formData.append('myFile', files[0])
-
-  fetch('127.0/save', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-   resData = response.text // data of api call
-// do stuff with variable. 
-  }) 
-  .then(data => {
-    console.log(data.path) // image path
-  })
-  .catch(error => {
-    console.error(error)
-  })
-}
-
-document.querySelector('#fileUpload').addEventListener('change', event => {
-  handleImageUpload(event)
-})
-</script>
+        <input type="submit">
+</form>
 {% endblock %}
