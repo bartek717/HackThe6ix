@@ -1,19 +1,22 @@
 <head>
     <link rel="stylesheet" href="../static/style.css">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+    <link
+        href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900'
+        rel='stylesheet' type='text/css'>
     <title>Hack The 6ix Project</title>
 </head>
+
 <body>
     <header class="web-header">
-            <div class="header-logo">
-                    <a href="/"><img class="header-logo-image" src="../static/images/qmind-concept1.png"></a>
-            </div>
-            <nav>
-                    <ul>
-                            <a href="/" class="button-1">About</a>
-                            <a href="/signup" class="button-1">Sign Up</a>
-                    </ul>
-            </nav>
+        <div class="header-logo">
+            <a href="/"><img class="header-logo-image" src="../static/images/qmind-concept1.png"></a>
+        </div>
+        <nav>
+            <ul>
+                <a href="/" class="button-1">About</a>
+                <a href="/signup" class="button-1">Sign Up</a>
+            </ul>
+        </nav>
     </header>
     <div class="main-body-content">
         <div class="overview-dashboard">
@@ -25,21 +28,21 @@
                 <p id="totalTax">Total GST/HST: </p>
             </div>
             <div class="overview-table">
-              
-                        
-                <table class="o-table" >
+
+
+                <table class="o-table">
                     <thead>
                         <tr>
-                         <th class="t-date green-text">Date</th>
+                            <th class="t-date green-text">Date</th>
                             <th class="t-average green-text">Total</th>
                             <th class="t-gst-hst green-text">GST/HST</th>
-                            <th class="t-file green-text">File</th>
+                            <th class="t-file green-text">Subtotal</th>
                         </tr>
                     </thead>
-                        <tbody id="tableData"></tbody>
-                    </table>
-                    
-               
+                    <tbody id="tableData"></tbody>
+                </table>
+
+
             </div>
             <div class="overview-footer">
                 <p>Budget Progress:</p>
@@ -54,40 +57,39 @@
     </div>
     <script>
         let taxes = 0
-        var json = [{ // THIS would be the response from the api, its a sample
-            subtotal: 50,
-            total: 55,
-            taxes: 5,
-            items: ["Salmon 5.00", "Water 45.00"]
-        }]
-
-        var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/'); //todays date
-        
-        var k = '<tbody>'
-        for(i = 0; i < json.length; i++){
-            k+= '<tr>';
-            k+= '<td>' + utc + '</td>';
-            k+= '<td>' + json[i].total + '</td>';
-            k+= '<td>' + json[i].taxes + '</td>';
-            
-            taxes+=json[i].taxes
-
-            let str = ""
-            for (k = 0; k <json.items.length; k++) {
-                str+= json.items[k] + ", "
-            }
-
-            k+= '<td>' + str + '</td>';
-            k+= '<td href="LinkToPicHere">' + "View Recipt" + '</td>';
 
 
-            k+= '</tr>';
-        }
-    k+='</tbody>';
-    document.getElementById('tableData').innerHTML = k;
+        fetch('/get').then(response => response.json())
+            .then(json => {
 
-    document.getElementById('totalTax').innerHTML = taxes;   
+                var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/'); //todays date
 
+                var k = '<tbody>'
+                for (i = 0; i < json.length; i++) {
+                    k += '<tr>';
+                    k += '<td>' + utc + '</td>';
+                    k += '<td>' + json[i].total + '</td>';
+                    k += '<td>' + json[i].taxes + '</td>';
+
+                    taxes += json[i].taxes
+
+                    let str = ""
+                    for (l = 0; l < json[i].items.length; l++) {
+                        str += json[i].items[l] + ", "
+                    }
+
+                    k += '<td>' + str + '</td>';
+                    k += '<td href="LinkToPicHere">' + "View Recipt" + '</td>';
+
+
+                    k += '</tr>';
+                }
+                k += '</tbody>';
+                document.getElementById('tableData').innerHTML = k;
+
+                document.getElementById('totalTax').innerHTML = taxes;
+
+            })
 
     </script>
 </body>

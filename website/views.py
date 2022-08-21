@@ -1,5 +1,5 @@
 import json
-from flask import Blueprint, render_template,request
+from flask import Blueprint, render_template,request,jsonify
 from flask_login import  login_required, current_user
 from  website.read_receipts import read_receipt
 import datetime
@@ -53,7 +53,7 @@ def get_all_receipt_from(user_id):
 @login_required
 def json_api():
     receipts = get_all_receipt_from(current_user.id)
-    return [json.loads(receipt.data) for receipt in receipts]
+    return jsonify([json.loads(receipt.data) for receipt in receipts])
 
 @views.route('/view')
 @login_required
